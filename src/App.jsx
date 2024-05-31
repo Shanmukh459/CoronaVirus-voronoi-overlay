@@ -1,8 +1,12 @@
 import React from 'react'
+import { LineChart } from './LineChart'
+
+const width = window.innerWidth
+const height = window.innerHeight
 
 function App() {
   return (
-    <div>App</div>
+    <LineChart width={width} height={height} />
   )
 }
 
