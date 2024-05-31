@@ -1,6 +1,8 @@
 import { line, scaleLog, scaleTime, extent, max } from 'd3'
 import React from 'react'
 import { XAxis } from './XAxis'
+import { YAxis } from './YAxis'
+
 
 const epsilon = 1
 
@@ -8,7 +10,7 @@ const margin = {
   top: 20,
   right: 20,
   bottom: 40,
-  left: 20
+  left: 60
 }
 export const LineChart = ({data, width, height}) => {
   const innerWidth = width - margin.left - margin.right
@@ -34,6 +36,7 @@ export const LineChart = ({data, width, height}) => {
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
         <XAxis xScale={xScale} innerHeight={innerHeight} />
+        <YAxis yScale={yScale} innerWidth={innerWidth} />
         {data.map(countryTimeSeries => (
           <path className='marker-line' d={lineGenerator(countryTimeSeries)} />
         ))}

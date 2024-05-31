@@ -10,7 +10,7 @@ export const XAxis = ({xScale, innerHeight}) => {
       .tickPadding(5)
 
     XAxisG.call(xAxis)
-  })
+  }, [])
   return (
     <g ref={ref}></g>
   )
