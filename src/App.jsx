@@ -8,9 +8,11 @@ const height = window.innerHeight
 function App() {
   const data = useData()
 
-  console.log(data)
+  if(!data) {
+    return <h1>Loading...</h1>
+  }
   return (
-    <LineChart width={width} height={height} />
+    <LineChart data={data} width={width} height={height} />
   )
 }
 

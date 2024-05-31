@@ -3,6 +3,8 @@ body {
   overflow: hidden;
 }
 
-svg {
-  background-color: red;
+.marker-line {
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
 }
