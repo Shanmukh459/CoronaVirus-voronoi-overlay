@@ -8,6 +8,9 @@ body {
   stroke: black;
   stroke-width: 2px;
 }
+.title {
+  font-size: 2em;
+}
 
 .tick text {
   font-size: 1.2em;

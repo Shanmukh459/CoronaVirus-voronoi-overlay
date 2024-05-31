@@ -3,14 +3,13 @@ import React from 'react'
 import { XAxis } from './XAxis'
 import { YAxis } from './YAxis'
 
-
 const epsilon = 1
 
 const margin = {
-  top: 20,
+  top: 60,
   right: 20,
-  bottom: 40,
-  left: 60
+  bottom: 60,
+  left: 70
 }
 export const LineChart = ({data, width, height}) => {
   const innerWidth = width - margin.left - margin.right
@@ -35,8 +34,25 @@ export const LineChart = ({data, width, height}) => {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
+        <text
+          className='title'
+          x={innerWidth/2}
+          textAnchor='middle'
+          y={-20}
+        >Global Corona Virus Deaths Over Time By Country</text>
         <XAxis xScale={xScale} innerHeight={innerHeight} />
+        <text
+          className='axis-label'
+          alignmentBaseline='hanging'
+          y={innerHeight+25}
+          x={innerWidth/2}
+        >Time</text>
+
         <YAxis yScale={yScale} innerWidth={innerWidth} />
+        <text
+          className='axis-label'
+          transform={`translate(-30, ${innerHeight/2}) rotate(-90)`}
+        >Cummulative Deaths</text>
         {data.map(countryTimeSeries => (
           <path className='marker-line' d={lineGenerator(countryTimeSeries)} />
         ))}
