@@ -5,7 +5,7 @@ body {
 
 .marker-line {
   fill: none;
-  stroke: black;
+  stroke: gray;
   stroke-width: 2px;
 }
 .title {
@@ -18,7 +18,7 @@ body {
 }
 
 .tick line {
-  stroke: rgb(205, 205, 205);
+  stroke: rgb(217, 217, 217);
 }
 
 .axis-label {

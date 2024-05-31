@@ -51,7 +51,7 @@ export const LineChart = ({data, width, height}) => {
         <YAxis yScale={yScale} innerWidth={innerWidth} />
         <text
           className='axis-label'
-          transform={`translate(-30, ${innerHeight/2}) rotate(-90)`}
+          transform={`translate(-35, ${innerHeight/2}) rotate(-90)`}
         >Cummulative Deaths</text>
         {data.map(countryTimeSeries => (
           <path className='marker-line' d={lineGenerator(countryTimeSeries)} />
