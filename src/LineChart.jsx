@@ -1,21 +1,30 @@
 import { line, scaleLog, scaleTime, extent, max } from 'd3'
 import React from 'react'
+import { XAxis } from './XAxis'
 
 const epsilon = 1
-export const LineChart = ({data, width, height}) => {
 
-  console.log(data)
+const margin = {
+  top: 20,
+  right: 20,
+  bottom: 40,
+  left: 20
+}
+export const LineChart = ({data, width, height}) => {
+  const innerWidth = width - margin.left - margin.right
+  const innerHeight = height - margin.top - margin.bottom
+
   const allData = data.flat(Infinity)
 
   const xValue = d => d.date
   const xScale = scaleTime()
     .domain(extent(allData, xValue))
-    .range([0, width])
+    .range([0, innerWidth])
 
   const yValue = d => d.totalDeaths
   const yScale = scaleLog()
     .domain([epsilon, max(allData, yValue)])
-    .range([height, 0])
+    .range([innerHeight, 0])
 
   const lineGenerator = line()
     .x(d => xScale(xValue(d)))
@@ -23,9 +32,12 @@ export const LineChart = ({data, width, height}) => {
   
   return (
     <svg width={width} height={height}>
-      {data.map(countryTimeSeries => (
-        <path className='marker-line' d={lineGenerator(countryTimeSeries)} />
-      ))}
+      <g transform={`translate(${margin.left}, ${margin.top})`}>
+        <XAxis xScale={xScale} innerHeight={innerHeight} />
+        {data.map(countryTimeSeries => (
+          <path className='marker-line' d={lineGenerator(countryTimeSeries)} />
+        ))}
+      </g>
     </svg>
   )
 }

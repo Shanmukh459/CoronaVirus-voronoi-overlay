@@ -8,3 +8,16 @@ body {
   stroke: black;
   stroke-width: 2px;
 }
+
+.tick text {
+  font-size: 1.5em;
+  fill: rgb(114, 114, 114);
+}
+
+.tick line {
+  stroke: rgb(205, 205, 205);
+}
+
+.axis-label {
+  font-size: 1.5em
+}
