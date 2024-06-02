@@ -15,12 +15,12 @@ export const VoronoiOverlay = ({
     ])
     const delaunay = Delaunay.from(points)
     const voronoi = delaunay.voronoi([0, 0, innerWidth, innerHeight])
-    
+
     return (
       <g className="voronoi">
         {points.map((point, i) => (
           <path
-          onMouseEnter={onHover}
+          onMouseEnter={() => onHover(allData[i])}
           d={voronoi.renderCell(i)} />
         ))}
       </g>

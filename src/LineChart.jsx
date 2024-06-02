@@ -1,5 +1,5 @@
 import { line, scaleLog, scaleTime, extent, max } from "d3"
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { XAxis } from "./XAxis"
 import { YAxis } from "./YAxis"
 import { VoronoiOverlay } from "./VoronoiOverlay"
@@ -17,6 +17,8 @@ const xValue = (d) => d.date
 const yValue = (d) => d.totalDeaths
 
 export const LineChart = ({ data, width, height }) => {
+  const [activeRow, setActiveRow] = useState()
+
   const innerWidth = width - margin.left - margin.right
   const innerHeight = height - margin.top - margin.bottom
 
@@ -45,8 +47,8 @@ export const LineChart = ({ data, width, height }) => {
     [xScale, xValue, yScale, yValue]
   )
 
-  const handleVoronoiHover = useCallback(() => {
-    console.log("Hovered!")
+  const handleVoronoiHover = useCallback((d) => {
+    setActiveRow(d)
   }, [])
 
   return (
@@ -75,6 +77,9 @@ export const LineChart = ({ data, width, height }) => {
         {data.map((countryTimeSeries) => (
           <path className="marker-line" d={lineGenerator(countryTimeSeries)} />
         ))}
+        {activeRow? <>
+          <path className="marker-line active" d={lineGenerator(data.find(countryTimeSeries => countryTimeSeries.countryName === activeRow.countryName))} />
+        </> : null}
         <VoronoiOverlay
           allData={allData}
           lineGenerator={lineGenerator}
