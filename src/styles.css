@@ -24,3 +24,7 @@ body {
 .axis-label {
   font-size: 1.5em
 }
+.voronoi path {
+  fill: none;
+  stroke: pink;
+}
