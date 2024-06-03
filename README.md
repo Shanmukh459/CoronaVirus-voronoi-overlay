@@ -16,7 +16,7 @@
 
 https://github.com/Shanmukh459/CoronaVirus-voronoi-overlay/assets/52078988/acea842f-25dd-43e9-9ab4-e5128492cac7
 
-## Steps to get it wokring in your PC
+## Steps to get it working in your PC
 
 - Clone the repository
 - Open command prompt at the root directory of the repository
