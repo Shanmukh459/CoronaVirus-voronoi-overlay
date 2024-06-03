@@ -16,7 +16,14 @@ const margin = {
 const xValue = (d) => d.date
 const yValue = (d) => d.totalDeaths
 
-const formatDate = timeFormat('%b %d %Y')
+const formatDate = timeFormat("%b %d %Y")
+
+const ToolTip = ({ activeRow, className }) => (
+  <text className={className} textAnchor="end" y={-12}>
+    {activeRow.countryName}: {activeRow.totalDeaths} death
+    {activeRow.totalDeaths > 1 && "s"} as of {formatDate(activeRow.date)}
+  </text>
+)
 
 export const LineChart = ({ data, width, height }) => {
   const [activeRow, setActiveRow] = useState()
@@ -79,29 +86,28 @@ export const LineChart = ({ data, width, height }) => {
         {data.map((countryTimeSeries) => (
           <path className="marker-line" d={lineGenerator(countryTimeSeries)} />
         ))}
-        {activeRow? <>
-          <path className="marker-line active" d={lineGenerator(data.find(countryTimeSeries => countryTimeSeries.countryName === activeRow.countryName))} />
-          <g transform={`translate(${lineGenerator.x()(activeRow)}, ${lineGenerator.y()(activeRow)})`}>
-            <circle 
-              r={10}
+        {activeRow ? (
+          <>
+            <path
+              className="marker-line active"
+              d={lineGenerator(
+                data.find(
+                  (countryTimeSeries) =>
+                    countryTimeSeries.countryName === activeRow.countryName
+                )
+              )}
             />
-            
-            <text
-              className="tooltip-highlight"
-              textAnchor="end"
-              y={-12}
+            <g
+              transform={`translate(${lineGenerator.x()(
+                activeRow
+              )}, ${lineGenerator.y()(activeRow)})`}
             >
-              {activeRow.countryName}: {activeRow.totalDeaths} death{activeRow.totalDeaths > 1 && 's'} as of {formatDate(activeRow.date)}
-            </text>
-            <text
-              className="tooltip"
-              textAnchor="end"
-              y={-12}
-            >
-              {activeRow.countryName}: {activeRow.totalDeaths} death{activeRow.totalDeaths > 1 && 's'} as of {formatDate(activeRow.date)}
-            </text>
-          </g>
-        </> : null}
+              <circle r={10} />
+              <ToolTip activeRow={activeRow} className="tooltip-highlight" />
+              <ToolTip activeRow={activeRow} className="tooltip" />
+            </g>
+          </>
+        ) : null}
         <VoronoiOverlay
           allData={allData}
           lineGenerator={lineGenerator}

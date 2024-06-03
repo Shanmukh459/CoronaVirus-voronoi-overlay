@@ -7,15 +7,15 @@ const csvUrl =
 const parseDay = timeParse("%m/%d/%y")
 
 const transformData = (rawData) => {
-  const countriesData = rawData.filter(d => !d['Province/State'])
+  const countriesData = rawData.filter((d) => !d["Province/State"])
   const days = rawData.columns.slice(4)
 
-  return countriesData.map(d => {
-    const countryName = d['Country/Region']
-    const countryTimeSeries =  days.map(day => ({
+  return countriesData.map((d) => {
+    const countryName = d["Country/Region"]
+    const countryTimeSeries = days.map((day) => ({
       date: parseDay(day),
       totalDeaths: +d[day],
-      countryName
+      countryName,
     }))
     countryTimeSeries.countryName = countryName
     return countryTimeSeries
@@ -26,7 +26,7 @@ export const useData = () => {
   const [data, setData] = useState()
 
   useEffect(() => {
-    csv(csvUrl).then(rawData => setData(transformData(rawData)))
+    csv(csvUrl).then((rawData) => setData(transformData(rawData)))
   }, [])
 
   return data

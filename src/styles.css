@@ -10,7 +10,7 @@ body {
 }
 .marker-line.active {
   stroke: black;
-} 
+}
 .title {
   font-size: 2em;
 }
@@ -25,7 +25,7 @@ body {
 }
 
 .axis-label {
-  font-size: 1.5em
+  font-size: 1.5em;
 }
 .voronoi path {
   fill: none;
@@ -35,7 +35,7 @@ body {
 .tooltip {
   font-size: 1.2em;
   font-weight: 600;
-  fill:black;
+  fill: black;
 }
 
 .tooltip-highlight {
