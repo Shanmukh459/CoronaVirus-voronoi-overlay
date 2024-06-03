@@ -85,7 +85,16 @@ export const LineChart = ({ data, width, height }) => {
             <circle 
               r={10}
             />
+            
             <text
+              className="tooltip-highlight"
+              textAnchor="end"
+              y={-12}
+            >
+              {activeRow.countryName}: {activeRow.totalDeaths} death{activeRow.totalDeaths > 1 && 's'} as of {formatDate(activeRow.date)}
+            </text>
+            <text
+              className="tooltip"
               textAnchor="end"
               y={-12}
             >
