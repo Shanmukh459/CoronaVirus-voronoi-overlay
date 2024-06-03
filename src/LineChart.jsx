@@ -1,4 +1,4 @@
-import { line, scaleLog, scaleTime, extent, max } from "d3"
+import { line, scaleLog, scaleTime, extent, max, timeFormat } from "d3"
 import React, { useCallback, useMemo, useState } from "react"
 import { XAxis } from "./XAxis"
 import { YAxis } from "./YAxis"
@@ -15,6 +15,8 @@ const margin = {
 
 const xValue = (d) => d.date
 const yValue = (d) => d.totalDeaths
+
+const formatDate = timeFormat('%b %d %Y')
 
 export const LineChart = ({ data, width, height }) => {
   const [activeRow, setActiveRow] = useState()
@@ -79,6 +81,17 @@ export const LineChart = ({ data, width, height }) => {
         ))}
         {activeRow? <>
           <path className="marker-line active" d={lineGenerator(data.find(countryTimeSeries => countryTimeSeries.countryName === activeRow.countryName))} />
+          <g transform={`translate(${lineGenerator.x()(activeRow)}, ${lineGenerator.y()(activeRow)})`}>
+            <circle 
+              r={10}
+            />
+            <text
+              textAnchor="end"
+              y={-12}
+            >
+              {activeRow.countryName}: {activeRow.totalDeaths} death{activeRow.totalDeaths > 1 && 's'} as of {formatDate(activeRow.date)}
+            </text>
+          </g>
         </> : null}
         <VoronoiOverlay
           allData={allData}
