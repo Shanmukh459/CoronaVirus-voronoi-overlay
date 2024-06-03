@@ -86,6 +86,7 @@ export const LineChart = ({ data, width, height }) => {
           innerWidth={innerWidth}
           innerHeight={innerHeight}
           onHover={handleVoronoiHover}
+          margin={margin}
         />
       </g>
     </svg>
