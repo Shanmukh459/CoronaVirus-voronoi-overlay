@@ -1,8 +1,19 @@
-# React + Vite
+# Corona Virus deaths Analysis with Voronoi Overlay
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ - This project analyzes the deaths due to corona virus over the years
+ - The analysis can be made on each country as each line in the plot depicts the data realted to different country
+ - Upon hovering over the line the infomation related to the country's deaths with regards to the point in time is rendered along with highlighting the line
+- This analysis can be used to figure the countries that were able to quickly recover form the virus and the countries that are most effected and many other insights
+- Data from (Johns Hopkins Coronavirus Dataset)[https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv]
 
-Currently, two official plugins are available:
+## Tech Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- D3
+- Voronoi
+
+## Snippet
+
+
+Happy Coding!
+ 
