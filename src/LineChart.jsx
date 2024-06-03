@@ -79,6 +79,7 @@ export const LineChart = ({ data, width, height }) => {
         <YAxis yScale={yScale} innerWidth={innerWidth} />
         <text
           className="axis-label"
+          textAnchor="middle"
           transform={`translate(-35, ${innerHeight / 2}) rotate(-90)`}
         >
           Cummulative Deaths
